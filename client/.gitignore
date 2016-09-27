@@ -1,4 +1,4 @@
-*.log*
-.idea/
+src/assets/vendor
 node_modules/
 dist/
+npm-debug*.log*

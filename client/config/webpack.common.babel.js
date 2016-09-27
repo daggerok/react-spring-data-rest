@@ -2,9 +2,7 @@
  * Created by mak on 9/6/16.
  */
 import path from 'path';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
 import ExtractPlugin from 'extract-text-webpack-plugin';
-import CopyWebpackPlugin from 'copy-webpack-plugin'
 import autoprefixer from 'autoprefixer';
 import cssnano from 'cssnano';
 
@@ -86,25 +84,7 @@ const config = {
     modulesDirectories: ['node_modules']
   },
   plugins: [
-    new ExtractPlugin('[name].css', { allChunks: true }),
-    new HtmlWebpackPlugin({ template: './src/assets/index.tpl.html' }),
-    new CopyWebpackPlugin([
-        // react
-        {from: './node_modules/react/dist/react.min.js',
-           to: './vendor/react'},
-        {from: './node_modules/react-dom/dist/react-dom.min.js',
-           to: './vendor/react'},
-        // jquery
-        {from: './node_modules/jquery/dist/jquery.min.js',
-           to: './vendor/jquery'},
-        // bootstrap
-        {from: './node_modules/bootstrap/dist/js/bootstrap.min.js',
-           to: './vendor/bootstrap'},
-        {from: './node_modules/bootstrap/dist/css/bootstrap.min.css',
-           to: './vendor/bootstrap'},
-        {from: './node_modules/bootstrap/dist/fonts',
-           to: './vendor/bootstrap/fonts'},
-    ])
+    new ExtractPlugin('[name].css', { allChunks: true })
   ],
   postcss: [
     autoprefixer,
@@ -114,16 +94,6 @@ const config = {
     'jquery': '$',
     'react-dom': 'ReactDOM',
     'react': 'React'
-  },
-  devtool: '#cheap-module-inline-source-map',
-  devServer: {
-    port: 8000,
-    historyApiFallback: true,
-    inline:   true,
-    progress: true,
-    proxy: {
-      "/api": "http://localhost:8080/api"
-    }
   },
   node:{
     console: true,

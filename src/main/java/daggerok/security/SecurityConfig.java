@@ -17,6 +17,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     AdminUserDetailsService adminUserDetailsService;
 
+    public static final String[] FALLBACK_MAPPINGS = {
+            "/admin**",
+            "/not-found**"
+    };
+
     @Override
     @SneakyThrows
     protected void configure(final HttpSecurity http) {
@@ -25,6 +30,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .csrf().disable()
             .authorizeRequests()
                 .antMatchers("/", "/app.*", "/vendor/**").permitAll()
+                .antMatchers(FALLBACK_MAPPINGS).permitAll()
                 .antMatchers("/admin**").hasAuthority("SUPERADMIN")
                 .anyRequest().fullyAuthenticated()
                 .and()

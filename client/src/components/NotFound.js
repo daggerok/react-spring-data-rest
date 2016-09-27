@@ -4,7 +4,7 @@
 import React from 'react';
 import Nav from "./Nav";
 
-export default () => (
+export const NotFound = () => (
   <div>
     <h3 class='green'>):</h3>
     <span class='red'>component not found...</span>

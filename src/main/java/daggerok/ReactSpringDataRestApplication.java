@@ -3,6 +3,7 @@ package daggerok;
 import daggerok.config.ReactSpringDataRestApplicationConfig;
 import daggerok.data.AdminUser;
 import daggerok.data.AdminUserRepository;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -16,12 +17,14 @@ import static java.util.Arrays.asList;
 public class ReactSpringDataRestApplication {
 
     @Bean
-    CommandLineRunner dbLoader(AdminUserRepository adminUserRepository) {
+    CommandLineRunner dbLoader(final AdminUserRepository adminUserRepository,
+                               @Value("${security.user.name:superadmin}") final String user,
+                               @Value("${security.user.password:admin}") final String password) {
 
         return args -> adminUserRepository.encodePasswordAndSave(new AdminUser()
                 .setRoles(asList("ADMIN", "SUPERADMIN"))
-                .setUsername("superadmin")
-                .setPassword("admin")
+                .setPassword(password)
+                .setUsername(user)
                 .setEnabled(true));
     }
 

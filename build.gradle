@@ -1,16 +1,16 @@
+version '0.0.1'
+group 'daggerok'
+
 buildscript {
-    repositories { mavenCentral() }
-    dependencies { classpath 'org.springframework.boot:spring-boot-gradle-plugin:1.4.1.RELEASE' }
+  repositories { mavenCentral() }
+  dependencies { classpath 'org.springframework.boot:spring-boot-gradle-plugin:1.4.1.RELEASE' }
 }
 
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'spring-boot'
 
-jar {
-    baseName = 'react-spring-data-rest'
-    version = '0.0.1'
-}
+jar { baseName = 'react-spring-data-rest' }
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -18,44 +18,44 @@ targetCompatibility = 1.8
 repositories { mavenCentral() }
 
 dependencies {
-    compile('org.springframework.boot:spring-boot-starter-mustache')
-    compile('org.springframework.boot:spring-boot-starter-security')
-    compile('org.springframework.boot:spring-boot-starter-actuator')
-    compile('org.springframework.boot:spring-boot-starter-data-mongodb')
-    compile('org.springframework.boot:spring-boot-starter-data-rest')
-    compile('org.springframework.boot:spring-boot-starter-hateoas')
-    compile('de.flapdoodle.embed:de.flapdoodle.embed.mongo')
-    compile('org.springframework.boot:spring-boot-devtools')
-    compile('org.projectlombok:lombok')
-    testCompile('org.springframework.boot:spring-boot-starter-test')
+  compile('org.springframework.boot:spring-boot-starter-mustache')
+  compile('org.springframework.boot:spring-boot-starter-security')
+  compile('org.springframework.boot:spring-boot-starter-actuator')
+  compile('org.springframework.boot:spring-boot-starter-data-mongodb')
+  compile('org.springframework.boot:spring-boot-starter-data-rest')
+  compile('org.springframework.boot:spring-boot-starter-hateoas')
+  compile('de.flapdoodle.embed:de.flapdoodle.embed.mongo')
+  compile('org.springframework.boot:spring-boot-devtools')
+  compile('org.projectlombok:lombok')
+  testCompile('org.springframework.boot:spring-boot-starter-test')
 }
 
 task install(type: Exec) {
-    workingDir 'client'
-    //commandLine 'npm', 'i'
-    executable 'bash'
-    args '-c', 'npm i'
+  workingDir 'client'
+  //commandLine 'npm', 'i'
+  executable 'bash'
+  args '-c', 'npm i'
 }
 
-task client(type: Exec) {
-    workingDir 'client'
-    //commandLine 'npm', 'run', 'build'
-    executable 'bash'
-    args '-c', 'npm run build'
+task client(type: Exec, dependsOn: ['install']) {
+  workingDir 'client'
+  //commandLine 'npm', 'run', 'build'
+  executable 'bash'
+  args '-c', 'npm run build'
 }
 
 task start(type: Exec) {
-    workingDir './client'
-    //commandLine 'npm', 'start'
-    executable 'bash'
-    args '-c', 'npm start'
+  workingDir './client'
+  //commandLine 'npm', 'start'
+  executable 'bash'
+  args '-c', 'npm start'
 }
 
 task dev(type: Exec) {
-    workingDir './client'
-    //commandLine 'npm', 'run', 'dev'
-    executable 'bash'
-    args '-c', 'npm run dev'
+  workingDir './client'
+  //commandLine 'npm', 'run', 'dev'
+  executable 'bash'
+  args '-c', 'npm run dev'
 }
 
 build.dependsOn client

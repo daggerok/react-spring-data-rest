@@ -7,7 +7,7 @@
       ]
     },
     "_links": {
-      "_self": "http://lcoalhost:3000"
+      "_self": "http://localhost:3000"
     }
   }
 }

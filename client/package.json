@@ -3,7 +3,7 @@
   "main": "./src/main.js",
   "private": true,
   "scripts": {
-    "postinstall": "bower install react#latest rest#latest jquery#latest bootstrap#latest",
+    "postinstall": "bower install react#latest jquery#latest bootstrap#latest",
     "serve": "npm-run-all webpack json-server",
     "json-server": "json-server ./api/db.json -d 500 -w -p 3000 --static ../src/main/resources/static",
     "prebuild": "npm run clean",
@@ -15,7 +15,6 @@
   },
   "devDependencies": {
     "autoprefixer": "*",
-    "autoprefixer-loader": "*",
     "babel-cli": "*",
     "babel-loader": "*",
     "babel-plugin-add-module-exports": "*",

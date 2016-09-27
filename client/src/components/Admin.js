@@ -5,6 +5,8 @@ import React from 'react';
 import { Header} from './admin/Header';
 import { Users } from './admin/Users';
 
+import { Client } from '../utils';
+
 export class Admin extends React.Component {
   constructor() {
     super();

@@ -4,7 +4,7 @@
 import { Converter } from './Converter';
 
 export class UsersConverter extends Converter {
-  public users(hateoas) {
+  users(hateoas) {
     return { users } = this._embedded(hateoas);
   }
 }

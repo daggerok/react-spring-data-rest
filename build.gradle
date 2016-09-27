@@ -32,22 +32,30 @@ dependencies {
 
 task install(type: Exec) {
     workingDir 'client'
-    commandLine 'npm', 'i'
+    //commandLine 'npm', 'i'
+    executable 'bash'
+    args '-c', 'npm i'
 }
 
 task client(type: Exec) {
     workingDir 'client'
-    commandLine 'npm', 'run', 'build'
+    //commandLine 'npm', 'run', 'build'
+    executable 'bash'
+    args '-c', 'npm run build'
 }
 
 task start(type: Exec) {
     workingDir './client'
-    commandLine 'npm', 'start'
+    //commandLine 'npm', 'start'
+    executable 'bash'
+    args '-c', 'npm start'
 }
 
 task dev(type: Exec) {
     workingDir './client'
-    commandLine 'npm', 'run', 'dev'
+    //commandLine 'npm', 'run', 'dev'
+    executable 'bash'
+    args '-c', 'npm run dev'
 }
 
 build.dependsOn client

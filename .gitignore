@@ -1,0 +1,17 @@
+src/main/resources/static
+.gradle/
+gradle
+gradlew*
+node_modules/
+npm-debug*.log*
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.idea
+*.iws
+*.iml
+*.ipr
+build/
+dist/

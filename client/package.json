@@ -1,0 +1,79 @@
+{
+  "name": "react-spring-data-rest",
+  "main": "./src/main.js",
+  "private": true,
+  "scripts": {
+    "serve": "npm-run-all webpack json-server",
+    "json-server": "json-server ./api/db.json -d 500 -w -p 3000 --static ../src/main/resources/static",
+    "prebuild": "npm run clean",
+    "build": "NODE_ENV=production webpack --config ./config/webpack.config.production.babel.js -c --process -p",
+    "dev": "npm run webpack -- -w",
+    "start": "webpack-dev-server -d --config ./config/webpack.config.babel.js --content-base=../src/main/resources/static",
+    "webpack": "webpack --config ./config/webpack.config.babel.js -c --process",
+    "clean": "rimraf -rf ../src/main/resources/static"
+  },
+  "devDependencies": {
+    "autoprefixer": "*",
+    "autoprefixer-loader": "*",
+    "babel-cli": "*",
+    "babel-loader": "*",
+    "babel-plugin-add-module-exports": "*",
+    "babel-plugin-react-html-attrs": "*",
+    "babel-plugin-transform-class-properties": "*",
+    "babel-preset-es2015": "*",
+    "babel-preset-react": "*",
+    "babel-preset-stage-0": "*",
+    "babel-register": "*",
+    "copy-webpack-plugin": "*",
+    "css-loader": "*",
+    "cssnano": "*",
+    "extract-text-webpack-plugin": "*",
+    "file-loader": "*",
+    "html-webpack-plugin": "*",
+    "json-server": "*",
+    "less": "*",
+    "less-loader": "*",
+    "npm-run-all": "*",
+    "opn-cli": "*",
+    "postcss-loader": "*",
+    "rimraf": "*",
+    "source-map-loader": "*",
+    "style-loader": "*",
+    "stylus": "*",
+    "stylus-loader": "*",
+    "url-loader": "*",
+    "webpack": "*",
+    "webpack-dev-server": "*"
+  },
+  "dependencies": {
+    "babel-polyfill": "*",
+    "bootstrap": "^3.3.7",
+    "jquery": "^3.1.1",
+    "react": "*",
+    "react-dom": "*",
+    "react-router": "*"
+  },
+  "babel": {
+    "presets": [
+      "stage-0",
+      "es2015",
+      "react"
+    ],
+    "plugins": [
+      "react-html-attrs",
+      "add-module-exports",
+      "transform-class-properties"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://githuib.com/daggerok/fast-react-starter"
+  },
+  "keywords": [
+    "react"
+  ],
+  "license": "ISC",
+  "version": "0.0.1",
+  "author": "Maksim Kostromin",
+  "description": "react-spring-data-rest"
+}

@@ -1,0 +1,13 @@
+{
+  "api": {
+    "_embedded": {
+      "users": [
+        {"id": 1, "username": "max"},
+        {"id": 2, "username": "bax"}
+      ]
+    },
+    "_links": {
+      "_self": "http://lcoalhost:3000"
+    }
+  }
+}

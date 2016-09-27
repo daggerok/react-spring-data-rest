@@ -1,0 +1,14 @@
+spring:
+  data:
+    mongodb:
+      port: 0
+    rest:
+      base-path: /api
+  application:
+    name: react-spring-data-rest
+management:
+  context-path: /mgmt
+logging:
+  level:
+    org.springframework.security: DEBUG
+    org.springframework.web: DEBUG

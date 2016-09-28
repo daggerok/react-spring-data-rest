@@ -1,9 +1,11 @@
 package daggerok.config;
 
-import daggerok.ReactSpringDataRestApplication;
-import org.springframework.context.annotation.ComponentScan;
+import daggerok.config.rest.RestRepositoryConfig;
+import daggerok.security.SecurityConfig;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 
 @Configuration
-@ComponentScan(basePackageClasses = ReactSpringDataRestApplication.class)
+@Import({   SecurityConfig.class,
+            RestRepositoryConfig.class })
 public class ReactSpringDataRestApplicationConfig {}

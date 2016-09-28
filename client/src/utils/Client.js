@@ -17,10 +17,12 @@ const registry = baseRegistry.child();
 registry.register('text/uri-list', UriListConverter);
 registry.register('application/hal+json', hal);
 
+const headers = { 'Accept': 'application/hal+json' };
+
 export const Client = () => {
 
-  return rest.wrap(mime, { registry: registry })
+  return rest.wrap(mime, { registry })
              .wrap(UriTemplateInterceptor)
              .wrap(errorCode)
-             .wrap(defaultRequest, { headers: { 'Accept': 'application/hal+json' }});
+             .wrap(defaultRequest, { headers });
 };

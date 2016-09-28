@@ -7,7 +7,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Optional;
 
-@RepositoryRestResource(path = "users", collectionResourceRel = "users")
+@RepositoryRestResource(
+        path = "users", // /api/{entityName(s)}
+        itemResourceRel = "user", // _embedde.{entityName(s)}._links.{entityName}
+        collectionResourceRel = "users") // _embedde.{entityName(s)}
 public interface AdminUserRepository extends MongoRepository<AdminUser, String> {
 
     PasswordEncoder PASSWORD_ENCODER = new BCryptPasswordEncoder();

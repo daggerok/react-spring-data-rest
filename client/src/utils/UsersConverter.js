@@ -5,6 +5,6 @@ import { Converter } from './Converter';
 
 export class UsersConverter extends Converter {
   users(hateoas) {
-    return { users } = this._embedded(hateoas);
+    return this._embedded(hateoas)['users'] || [];
   }
 }

@@ -1,6 +1,3 @@
-/**
- * Created by mak on 9/6/16.
- */
 import React from 'react';
 import { Link } from 'react-router';
 import rest from 'rest';
@@ -18,7 +15,6 @@ export class Nav extends React.Component {
       const entity = response.entity;
       if (entity) {
         const { authenticated } = JSON.parse(entity);
-        console.log('authenticated', authenticated);
         this.setState({ authenticated });
       }
     });
@@ -26,10 +22,11 @@ export class Nav extends React.Component {
 
   componentDidMount() {
     this.getUserInfo();
-    console.log('Nav did mount');
   }
 
   render() {
+    const label = this.state.authenticated ? 'Logout' : 'Login';
+    const href = this.state.authenticated ? '/logout' : '/login';
     return (
       <nav class="navbar navbar-default">
         <div class="container-fluid">
@@ -93,12 +90,7 @@ export class Nav extends React.Component {
                   <li><a href="#">Separated link</a></li>
                 </ul>
               </li>
-              <li>
-                <a class="active"
-                   href={this.state.authenticated ? '/logout' : '/login'}>
-                  {this.state.authenticated ? 'Logout' : 'Login'} <span class="sr-only">(current)</span>
-                </a>
-              </li>
+              <li><a class="active" href={href}>{label} <span class="sr-only">(current)</span></a></li>
             </ul>
           </div>
           {/*<!-- /.navbar-collapse -->*/}

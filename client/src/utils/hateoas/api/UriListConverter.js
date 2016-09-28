@@ -1,6 +1,3 @@
-/**
- * Created by mak on 9/28/16.
- */
 export const UriListConverter = {
   read: (str /*, opts */) => str.split('\n'),
 

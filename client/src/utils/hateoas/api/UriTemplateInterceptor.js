@@ -1,6 +1,3 @@
-/**
- * Created by mak on 9/28/16.
- */
 import interceptor from 'rest/interceptor';
 
 /* If the URI is a URI Template per RFC 6570 (http://tools.ietf.org/html/rfc6570), trim out the template part */

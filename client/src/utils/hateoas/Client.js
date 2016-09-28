@@ -1,6 +1,3 @@
-/**
- * Created by mak on 9/28/16.
- */
 import rest from 'rest';
 import defaultRequest from 'rest/interceptor/defaultRequest';
 import mime from 'rest/interceptor/mime';

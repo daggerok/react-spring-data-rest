@@ -2,8 +2,8 @@ import React, {createFragment} from 'react';
 import rest from 'rest';
 import { Header} from './admin/Header';
 import { Users } from './admin/Users';
-import { Response } from './Response';
 import { UsersConverter } from '../utils/UsersConverter';
+// import { Response } from './Response';
 
 export class Admin extends React.Component {
   constructor() {
@@ -19,7 +19,8 @@ export class Admin extends React.Component {
   }
 
   getUsers() {
-    return rest('/api/users').then(response => {
+    this.client = rest('/api/users');
+    this.client.then(response => {
 
       const { entity, headers } = response;
       const jsonHateoas = JSON.parse(entity);
@@ -31,18 +32,15 @@ export class Admin extends React.Component {
         headers
       });
     });
+    return this.client;
   }
 
   componentDidMount() {
-    this.request = this.getUsers();
+    this.client = this.getUsers();
   }
 
-  componentWillUnmount() {
-    if (this.request) {
-      //// jquery:
-      // request.abort();
-      this.request.cancel();
-    }
+  componentWillUmnount() {
+    console.log('this.client', this.client || {});
   }
 
   render() {

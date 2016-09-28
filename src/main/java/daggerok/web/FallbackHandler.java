@@ -7,8 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.servlet.http.HttpServletResponse;
 
-import static daggerok.security.SecurityConfig.FALLBACK_MAPPINGS;
-
 @Slf4j
 @Controller
 public class FallbackHandler {

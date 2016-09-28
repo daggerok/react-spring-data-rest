@@ -17,7 +17,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     AdminUserDetailsService adminUserDetailsService;
 
-    public static final String[] FALLBACK_MAPPINGS = {
+    static final String[] PUBLIC_MAPPINGS = {
+            "/",
+            "/me",
+            "/app.*",
+            "/vendor/**"
+    };
+
+    static final String[] FALLBACK_MAPPINGS = {
             "/admin**",
             "/not-found**"
     };
@@ -29,14 +36,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
             .csrf().disable()
             .authorizeRequests()
-                .antMatchers("/", "/app.*", "/vendor/**").permitAll()
+                .antMatchers(PUBLIC_MAPPINGS).permitAll()
                 .antMatchers(FALLBACK_MAPPINGS).permitAll()
                 .antMatchers("/admin**").hasAuthority("SUPERADMIN")
                 .anyRequest().fullyAuthenticated()
                 .and()
             .formLogin().permitAll()
                 .and()
-            .logout().permitAll();
+            .logout()
+                .invalidateHttpSession(true)
+                .clearAuthentication(true)
+                .logoutSuccessUrl("/")
+                .permitAll();
         // @formatter:on
     }
 

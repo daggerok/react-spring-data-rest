@@ -7,10 +7,9 @@ export class Nav extends React.Component {
     super();
     this.client = rest('/me');
     this.state = { authenticated: false };
-    this.getUserInfo = this.getUserInfo.bind(this);
   }
 
-  getUserInfo() {
+  componentDidMount() {
     this.client.then(response => {
       const entity = response.entity;
       if (entity) {
@@ -18,10 +17,6 @@ export class Nav extends React.Component {
         this.setState({ authenticated });
       }
     });
-  }
-
-  componentDidMount() {
-    this.getUserInfo();
   }
 
   render() {

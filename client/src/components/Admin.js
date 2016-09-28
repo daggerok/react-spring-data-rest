@@ -1,4 +1,4 @@
-import React, {createFragment} from 'react';
+import React from 'react';
 import rest from 'rest';
 import { Header} from './admin/Header';
 import { Users } from './admin/Users';
@@ -9,10 +9,9 @@ export class Admin extends React.Component {
     super();
     this.state = { users: [] };
     this.client = rest('/api/users');
-    this.getUsers = this.getUsers.bind(this);
   }
 
-  getUsers() {
+  componentDidMount() {
     this.client.then(response => {
       const { entity } = response;
       const hateoas = JSON.parse(entity);
@@ -20,10 +19,6 @@ export class Admin extends React.Component {
 
       this.setState({ users });
     });
-  }
-
-  componentDidMount() {
-    this.getUsers();
   }
 
   render() {

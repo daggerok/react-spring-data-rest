@@ -21,6 +21,12 @@ public class ReactSpringDataRestApplication {
                                @Value("${security.user.name:superadmin}") final String user,
                                @Value("${security.user.password:admin}") final String password) {
 
+        adminUserRepository.encodePasswordAndSave(new AdminUser()
+                .setRoles(asList("ADMIN"))
+                .setPassword("qq")
+                .setUsername("qq")
+                .setEnabled(true));
+
         return args -> adminUserRepository.encodePasswordAndSave(new AdminUser()
                 .setRoles(asList("ADMIN", "SUPERADMIN"))
                 .setPassword(password)

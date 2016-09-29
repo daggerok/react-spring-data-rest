@@ -1,6 +1,3 @@
-/**
- * Created by mak on 9/6/16.
- */
 import config from './webpack.common.babel';
 import webpack from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';

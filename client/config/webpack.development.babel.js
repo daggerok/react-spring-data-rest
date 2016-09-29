@@ -1,6 +1,3 @@
-/**
- * Created by mak on 9/6/16.
- */
 import config from './webpack.common.babel';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import CopyWebpackPlugin from 'copy-webpack-plugin'
@@ -22,7 +19,10 @@ export default {
     inline:   true,
     progress: true,
     proxy: {
-      "/api": "http://localhost:8080/api"
+      "/logout": "http://localhost:8080",
+      "/login": "http://localhost:8080",
+      "/api": "http://localhost:8080",
+      "/me": "http://localhost:8080"
     }
   }
 };

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>:(</title>
+  <link rel="stylesheet" href="/vendor/bootstrap/dist/css/bootstrap.css">
+  <link href="app.css" rel="stylesheet"></head>
+</head>
+<body class="container">
+
+<div>):</div>
+
+{{#if (test status 'is' 404)}}
+  <pre class="error-container">
+                       _ _       __    _ _
+      o O O         | | |     /  \  | | |
+     o        ___   |_  _|   | () | |_  _|
+    TS__[O]  |___|   _|_|_   _\__/   _|_|_
+   {======|_|"""""|_|"""""|_|"""""|_|"""""|
+  ./o--000'"`-0-0-'"`-0-0-'"`-0-0-'"`-0-0-'
+
+  </pre>
+{{/if}}
+
+{{#if (test status 'is' 403)}}
+  <pre class="error-container">
+
+                             (`-') <-.(`-')   _     _(`-')    _(`-')    (`-')  _<-. (`-')_
+     <-.          .->   <-.(OO )  __( OO)  (_)   ( (OO ).->( (OO ).-> ( OO).-/   \( OO) )
+  (`-')-----.(`-')----. ,------,)'-'---.\  ,-(`-')\    .'_  \    .'_ (,------.,--./ ,--/
+  (OO|(_\---'( OO).-.  '|   /`. '| .-. (/  | ( OO)'`'-..__) '`'-..__) |  .---'|   \ |  |
+   / |  '--. ( _) | |  ||  |_.' || '-' `.) |  |  )|  |  ' | |  |  ' |(|  '--. |  . '|  |)
+   \_)  .--'  \|  |)|  ||  .   .'| /`'.  |(|  |_/ |  |  / : |  |  / : |  .--' |  |\    |
+    `|  |_)    '  '-'  '|  |\  \ | '--'  / |  |'->|  '-'  / |  '-'  / |  `---.|  | \   |
+     `--'       `-----' `--' '--'`------'  `--'   `------'  `------'  `------'`--'  `--'
+
+  </pre>
+{{/if}}
+
+{{!--
+  {{this}}
+  {{#path}}<h3>path: {{path}}</h3>{{/path}}
+  {{#error}}<h3>Error: {{error}}</h3>{{/error}}
+  {{#status}}<h3>Status: {{status}}</h3>{{/status}}
+  {{#timestamp}}<h3>timestamp: {{timestamp}}</h3>{{/timestamp}}
+  {{#springMacroRequestContext}}<h3>springMacroRequestContext: {{springMacroRequestContext}}</h3>{{/springMacroRequestContext}}
+--}}
+
+<script>
+
+  (function error() {
+
+    const times = 3;
+
+    window.setTimeout(function () {
+      window.location.href = '/';
+    }, times * 1000);
+
+  })();
+
+</script>
+</body>
+</html>

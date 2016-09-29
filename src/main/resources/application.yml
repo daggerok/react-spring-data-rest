@@ -6,6 +6,8 @@ spring:
       base-path: /api
   application:
     name: react-spring-data-rest
+  mustache:
+    suffix: .hbs
 management:
   context-path: /mgmt
 logging:

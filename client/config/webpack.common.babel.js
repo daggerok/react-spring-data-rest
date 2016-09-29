@@ -1,6 +1,3 @@
-/**
- * Created by mak on 9/6/16.
- */
 import path from 'path';
 import ExtractPlugin from 'extract-text-webpack-plugin';
 import autoprefixer from 'autoprefixer';
@@ -16,7 +13,7 @@ const config = {
   output: {
     path: '../src/main/resources/static/',
     filename: '[name].js',
-    sourceMapFilename: 'maps/[file].map'
+    // sourceMapFilename: 'maps/[file].map'
   },
   module: {
     preLoaders: [{

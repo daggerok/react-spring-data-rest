@@ -29,27 +29,44 @@ public class HandlebarsComparator {
 
         switch (operator) {
             case "in":
-                if (valueOf(right).contains(valueOf(left))) {
-                    return SUCCESS;
-                }
-                break;
             case "contains":
             case "has":
                 if (valueOf(left).contains(valueOf(right))) {
                     return SUCCESS;
                 }
                 break;
-            case "==":
+            case "in any":
+            case "contains any":
+            case "has any":
+                if (valueOf(left).toLowerCase().contains(valueOf(right).toLowerCase())) {
+                    return SUCCESS;
+                }
+                break;
+            case "===":
             case "is":
             case "equal":
                 if (left.compareTo(right) == 0) {
                     return SUCCESS;
                 }
                 break;
-            case "!=":
+            case "==":
+            case "is any":
+            case "equal any":
+                if (valueOf(left).compareToIgnoreCase(valueOf(right)) == 0) {
+                    return SUCCESS;
+                }
+                break;
+            case "!==":
             case "is not":
             case "not equal":
                 if (left.compareTo(right) != 0) {
+                    return SUCCESS;
+                }
+                break;
+            case "!=":
+            case "is not any":
+            case "not equal any":
+                if (valueOf(left).compareToIgnoreCase(valueOf(right)) != 0) {
                     return SUCCESS;
                 }
                 break;
@@ -59,9 +76,21 @@ public class HandlebarsComparator {
                     return SUCCESS;
                 }
                 break;
+            case "<~":
+            case "less than any":
+                if (valueOf(left).compareToIgnoreCase(valueOf(right)) < 0) {
+                    return SUCCESS;
+                }
+                break;
             case "<=":
             case "less or equal":
                 if (left.compareTo(right) <= 0) {
+                    return SUCCESS;
+                }
+                break;
+            case "<=~":
+            case "less or equal any":
+                if (valueOf(left).compareToIgnoreCase(valueOf(right)) <= 0) {
                     return SUCCESS;
                 }
                 break;
@@ -71,9 +100,21 @@ public class HandlebarsComparator {
                     return SUCCESS;
                 }
                 break;
+            case ">~":
+            case "greater than any":
+                if (valueOf(left).compareToIgnoreCase(valueOf(right)) > 0) {
+                    return SUCCESS;
+                }
+                break;
             case ">=":
             case "greater or equal":
                 if (left.compareTo(right) >= 0) {
+                    return SUCCESS;
+                }
+                break;
+            case ">=~":
+            case "greater or equal any":
+                if (valueOf(left).compareToIgnoreCase(valueOf(right)) >= 0) {
                     return SUCCESS;
                 }
                 break;

@@ -2,9 +2,11 @@ package daggerok.data;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import java.util.List;
 import java.util.Optional;
 
 @RepositoryRestResource(
@@ -20,4 +22,20 @@ public interface AdminUserRepository extends MongoRepository<AdminUser, String> 
     default AdminUser encodePasswordAndSave(AdminUser adminUser) {
         return save(adminUser.setPassword(PASSWORD_ENCODER.encode(adminUser.getPassword())));
     }
+
+    @Override
+    @PreAuthorize("hasAuthority('SUPERADMIN')")
+    <S extends AdminUser> S save(S entity);
+
+    @Override
+    @PreAuthorize("hasAuthority('SUPERADMIN')")
+    <S extends AdminUser> List<S> save(Iterable<S> entites);
+
+    @Override
+    @PreAuthorize("hasAuthority('SUPERADMIN')")
+    <S extends AdminUser> S insert(S entity);
+
+    @Override
+    @PreAuthorize("hasAuthority('SUPERADMIN')")
+    <S extends AdminUser> List<S> insert(Iterable<S> entities);
 }

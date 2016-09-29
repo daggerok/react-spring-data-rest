@@ -1,22 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router';
-import rest from 'rest';
+import {
+  client,
+  isAuthenticated
+} from '../services/user/me';
 
 export class Nav extends React.Component {
   constructor() {
     super();
-    this.client = rest('/me');
     this.state = { authenticated: false };
   }
 
   componentDidMount() {
-    this.client.then(response => {
-      const entity = response.entity;
-      if (entity) {
-        const { authenticated } = JSON.parse(entity);
-        this.setState({ authenticated });
-      }
-    });
+    client.then(response => this.setState({
+      authenticated: isAuthenticated(response)
+    }));
   }
 
   render() {

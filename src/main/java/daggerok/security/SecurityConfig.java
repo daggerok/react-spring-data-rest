@@ -1,9 +1,12 @@
 package daggerok.security;
 
+import daggerok.security.handler.HomeUrlRedirectSuccessLoginHandler;
 import daggerok.security.userdetails.AdminUserDetailsService;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -12,14 +15,20 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(securedEnabled = true, prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     AdminUserDetailsService adminUserDetailsService;
 
+    @Autowired
+    HomeUrlRedirectSuccessLoginHandler homeUrlRedirectLoginSuccessHandler;
+
+
     static final String[] PUBLIC_MAPPINGS = {
             "/",
             "/me",
+            "/bye",
             "/app.*",
             "/vendor/**"
     };
@@ -39,14 +48,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(PUBLIC_MAPPINGS).permitAll()
                 .antMatchers(FALLBACK_MAPPINGS).permitAll()
                 .antMatchers("/admin**").hasAuthority("SUPERADMIN")
+                //// already implemented in AdminUserRepository:
+                //.antMatchers(HttpMethod.PUT, "/api/**").hasAuthority("SUPERADMIN")
+                //.antMatchers(HttpMethod.POST, "/api/**").hasAuthority("SUPERADMIN")
+                .antMatchers(HttpMethod.DELETE, "/api/**").hasAuthority("SUPERADMIN")
                 .anyRequest().fullyAuthenticated()
                 .and()
-            .formLogin().permitAll()
+            .formLogin()
+                .successHandler(homeUrlRedirectLoginSuccessHandler)
+                .permitAll()
                 .and()
             .logout()
                 .invalidateHttpSession(true)
                 .clearAuthentication(true)
-                .logoutSuccessUrl("/")
+                .logoutSuccessUrl("/bye")
                 .permitAll();
         // @formatter:on
     }

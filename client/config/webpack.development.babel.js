@@ -22,6 +22,7 @@ export default {
       "/logout": "http://localhost:8080",
       "/login": "http://localhost:8080",
       "/api": "http://localhost:8080",
+      "/bye": "http://localhost:8080",
       "/me": "http://localhost:8080"
     }
   }

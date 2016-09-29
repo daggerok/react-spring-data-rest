@@ -1,43 +1,48 @@
-import React from "react";
-import rest from "rest";
-import {User} from "./User";
-import {UsersConverter} from "../../utils/converters/UsersConverter";
+import React from 'react';
+import { User } from './User';
+import { UserConverter } from '../../converters/UserConverter';
 
-const uri = '/api/users';
-const getUsersClient = rest(uri);
-const rmUserClient = (id) => rest({
-  method: 'DELETE',
-  path: `${uri}/${id}`
-});
+import {
+  getClient,
+  deleteClient
+} from '../../services/user/api/users';
 
 export class Users extends React.Component {
   constructor() {
     super();
-    this.state = { users: [] };
+    this.state = {
+      users: [],
+      authenticated: false
+    };
     this.rmUserById = this.rmUserById.bind(this);
   }
 
   componentDidMount() {
-    getUsersClient.then(response => {
-      const {entity} = response;
+    getClient.then(response => {
+      const { entity } = response;
       const hateoas = JSON.parse(entity);
-      const users = new UsersConverter().users(hateoas);
+      const users = new UserConverter().users(hateoas);
 
       this.setState({ users });
     });
   }
 
   rmUserById(id) {
-    rmUserClient(id).then(
-      response => this.setState({ users: [ ...this.state.users.filter(user => user.id != id) ] }),
-      error => console.error('error', error)
+    deleteClient(id).then(
+      response => {
+        if (response.status.code === 204 ) {
+          this.setState({ users: [ ...this.state.users.filter(user => user.id != id) ] })
+        }
+      }
     );
   }
 
   render() {
     return (
       <tbody class="table-striped">
-        {this.state.users.map((user, i) => <User key={i} user={user} rmUserById={this.rmUserById}/>)}
+      {this.state.users.map((user, i) => <User key={i}
+                                               user={user}
+                                               rmUserById={this.rmUserById} />)}
       </tbody>
     );
   }

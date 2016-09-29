@@ -4,7 +4,7 @@ import { Users } from './admin/Users';
 
 export const Admin = () => (
   <div>
-    <table className="table">
+    <table class="table">
       <Header />
       <Users />
     </table>

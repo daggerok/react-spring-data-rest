@@ -12,14 +12,14 @@ export class Nav extends React.Component {
   }
 
   componentDidMount() {
-    client.then(response => this.setState({
-      authenticated: isAuthenticated(response)
-    }));
+    client.then(response => this.setState({ authenticated: isAuthenticated(response) }));
   }
 
   render() {
+
     const label = this.state.authenticated ? 'Logout' : 'Login';
     const href = this.state.authenticated ? '/logout' : '/login';
+
     return (
       <nav class="navbar navbar-default">
         <div class="container-fluid">

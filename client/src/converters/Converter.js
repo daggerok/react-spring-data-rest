@@ -1,10 +1,4 @@
-export class Converter {
-
-  _embedded(hateoas) {
-    return hateoas['_embedded'] || {};
-  }
-
-  _links(hateoas) {
-    return hateoas['_links'] || {};
-  }
+export default {
+  _embedded: (hateoas) => hateoas['_embedded'] || {},
+  _links: (hateoas) => hateoas['_links'] || {}
 }

@@ -1,7 +1,5 @@
-import { Converter } from './Converter';
+import Converter from './Converter';
 
-export class UserConverter extends Converter {
-  users(hateoas) {
-    return this._embedded(hateoas)['users'] || [];
-  }
+export default {
+  users: (hateoas) => Converter._embedded(hateoas)['users'] || []
 }

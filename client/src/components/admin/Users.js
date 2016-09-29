@@ -1,6 +1,6 @@
 import React from 'react';
 import { User } from './User';
-import { UserConverter } from '../../converters/UserConverter';
+import UserConverter from '../../converters/UserConverter';
 
 import {
   getClient,
@@ -21,7 +21,7 @@ export class Users extends React.Component {
     getClient.then(response => {
       const { entity } = response;
       const hateoas = JSON.parse(entity);
-      const users = new UserConverter().users(hateoas);
+      const users = UserConverter.users(hateoas);
 
       this.setState({ users });
     });
@@ -40,9 +40,9 @@ export class Users extends React.Component {
   render() {
     return (
       <tbody class="table-striped">
-      {this.state.users.map((user, i) => <User key={i}
-                                               user={user}
-                                               rmUserById={this.rmUserById} />)}
+        {this.state.users.map((user, i) => <User key={i}
+                                                 user={user}
+                                                 rmUserById={this.rmUserById} />)}
       </tbody>
     );
   }

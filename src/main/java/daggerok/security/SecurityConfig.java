@@ -34,8 +34,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     };
 
     static final String[] FALLBACK_MAPPINGS = {
-            "/admin**",
-            "/not-found**"
+            "/admin",
+            "/not-found"
     };
 
     @Override
@@ -80,8 +80,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .inMemoryAuthentication()
                 .withUser("admin")
                 .password("admin")
-                .roles("USER", "ADMIN")
-                .authorities(AuthorityUtils.createAuthorityList("USER", "ADMIN"))
+                .roles("USER", "SUPERADMIN", "ADMIN")
+                .authorities(AuthorityUtils.createAuthorityList("USER", "SUPERADMIN", "ADMIN"))
                 .and()
             .and()
             // mongo db:

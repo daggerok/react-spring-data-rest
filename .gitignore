@@ -1,10 +1,12 @@
+.idea/
+!.idea/compiler.xml
+!.idea/runConfigurations/*
 src/main/resources/static
 node_modules/
 .gradle/
 gradle/
 build/
 out/
-.idea/
 *.iws
 *.iml
 *.ipr

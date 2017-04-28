@@ -13,8 +13,8 @@ public class FallbackHandler {
 
     @SneakyThrows
     @GetMapping({
-            "/not-found**",
-            "/admin**"
+            "/not-found",
+            "/admin"
     })
     public String handle404(final HttpServletResponse res) {
         return "/index.html";

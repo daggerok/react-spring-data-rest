@@ -1,14 +1,12 @@
-version '0.0.1'
-group 'daggerok'
-
-buildscript {
-  repositories { mavenCentral() }
-  dependencies { classpath 'org.springframework.boot:spring-boot-gradle-plugin:1.4.1.RELEASE' }
+plugins {
+  id 'java'
+  id 'idea'
+  id 'eclipse'
+  id 'org.springframework.boot' version '1.4.3.RELEASE'
 }
 
-apply plugin: 'java'
-apply plugin: 'eclipse'
-apply plugin: 'spring-boot'
+version '0.0.1'
+group 'daggerok'
 
 jar { baseName = 'react-spring-data-rest' }
 
@@ -22,15 +20,15 @@ dependencies {
       'com.github.jknack:handlebars-helpers:4.0.4',
       'com.github.jknack:handlebars-jackson2:4.0.4',
       'com.github.jknack:handlebars-humanize:4.0.4',
-      'com.github.jknack:handlebars-markdown:4.0.4'
-  compile('org.springframework.boot:spring-boot-starter-security')
-  compile('org.springframework.boot:spring-boot-starter-actuator')
-  compile('org.springframework.boot:spring-boot-starter-data-mongodb')
-  compile('org.springframework.boot:spring-boot-starter-data-rest')
-  compile('org.springframework.boot:spring-boot-starter-hateoas')
-  compile('de.flapdoodle.embed:de.flapdoodle.embed.mongo')
-  compile('org.springframework.boot:spring-boot-devtools')
-  compile('org.projectlombok:lombok')
+      'com.github.jknack:handlebars-markdown:4.0.4',
+      'org.springframework.boot:spring-boot-starter-security',
+      'org.springframework.boot:spring-boot-starter-actuator',
+      'org.springframework.boot:spring-boot-starter-data-mongodb',
+      'org.springframework.boot:spring-boot-starter-data-rest',
+      'org.springframework.boot:spring-boot-starter-hateoas',
+      'de.flapdoodle.embed:de.flapdoodle.embed.mongo',
+      'org.springframework.boot:spring-boot-devtools',
+      'org.projectlombok:lombok'
   testCompile('org.springframework.boot:spring-boot-starter-test')
 }
 
